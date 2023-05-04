@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -94,14 +95,16 @@ public class degree extends JPanel implements ActionListener {
         });
     }
     private void tmouseClicked(java.awt.event.MouseEvent evt){
-        x = table.getSelectedRow()+1;
-        System.out.println("ok"+table.getSelectedRow());
+        x = table.getSelectedRow();
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            databas.degreeDataBase.insertDegree(x, Integer.parseInt(t1.getText()) , Integer.parseInt(t2.getText()), Integer.parseInt(t3.getText()), Integer.parseInt(t4.getText()), Integer.parseInt(t5.getText()), Integer.parseInt(t6.getText()));
+            int id = arr.get(x).getId();
+            databas.degreeDataBase.insertDegree(id, Integer.parseInt(t1.getText()) , Integer.parseInt(t2.getText()), Integer.parseInt(t3.getText()), Integer.parseInt(t4.getText()), Integer.parseInt(t5.getText()), Integer.parseInt(t6.getText()));
+            JOptionPane.showMessageDialog(null, "dgree add to student: ","insetred degree",JOptionPane.INFORMATION_MESSAGE);
         } catch (NumberFormatException | SQLException e1) {
             System.out.println(e1.getMessage());
             System.out.println(e1.getLocalizedMessage());

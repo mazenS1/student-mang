@@ -12,9 +12,11 @@ public class studentDataBase {
         return DriverManager.getConnection("jdbc:sqlite:uni.db");
     }
     public static void insertStudent(String fname,String lname,String address,String depart) throws SQLException{
-        try {    
-        Connection con=connect();
-        PreparedStatement p=con.prepareStatement("insert into students (fname,lname,adress,department)  values(?,?,?,?)");
+        try(
+                Connection con=connect();
+                PreparedStatement p=con.prepareStatement("insert into students (fname,lname,adress,department)  values(?,?,?,?)");
+        ) {    
+        
         p.setString(1, fname);
         p.setString(2, lname);
         p.setString(3, address);
@@ -27,9 +29,11 @@ public class studentDataBase {
     }
     public static ArrayList<Student> getStudent(String s) {
         ArrayList<Student> list = new ArrayList<>();
-        try {
-            Connection con = connect();
-            PreparedStatement p = con.prepareStatement("select * from students where department=?");
+        try(
+                Connection con = connect();
+                PreparedStatement p = con.prepareStatement("select * from students where department=?");
+        ) {
+            
             p.setString(1, s);
             ResultSet r = p.executeQuery();
             while (r.next()) {

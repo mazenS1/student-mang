@@ -10,9 +10,11 @@ public class degreeDataBase {
         return DriverManager.getConnection("jdbc:sqlite:uni.db");
     }
     public static void insertDegree(int id,int m1,int m2,int m3,int m4,int m5,int m6) throws SQLException{
-        try {    
-        Connection con=connect();
-        PreparedStatement p=con.prepareStatement("insert into degree (id,m1,m2,m3,m4,m5,m6,sum)  values(?,?,?,?,?,?,?,?)");
+        try (
+            Connection con=connect();
+            PreparedStatement p=con.prepareStatement("insert into degree (id,m1,m2,m3,m4,m5,m6,sum)  values(?,?,?,?,?,?,?,?)");
+        ){    
+        
         p.setInt(1, id);
         p.setInt(2, m1);
         p.setInt(3, m2);

@@ -15,9 +15,11 @@ public class userDataBase {
         
     }
     public static void insertUser(String user,String pass,String depart) throws SQLException{
-        try {    
-        Connection con=connect();
-        PreparedStatement p=con.prepareStatement("insert into user values(?,?,?)");
+        try(
+            Connection con=connect();
+            PreparedStatement p=con.prepareStatement("insert into user values(?,?,?)");
+        ) {    
+        
         p.setString(1, user);
         p.setString(2, pass);
         p.setString(3, depart);
@@ -29,9 +31,11 @@ public class userDataBase {
     }
     public static ArrayList<user> getUser() {
         ArrayList<user> list = new ArrayList<>();
-        try {
+        try (
             Connection con = connect();
             PreparedStatement p = con.prepareStatement("select * from user");
+        ){
+            
             ResultSet r = p.executeQuery();
             while (r.next()) {
                 list.add(new user(r.getString("user_name"), r.getString("password"), r.getString("department")));
@@ -66,9 +70,11 @@ public class userDataBase {
         return x;
     }
     public static String getDepartment(String user){
-        try {
-            Connection con=connect();
-            PreparedStatement p=con.prepareStatement("select department from user where user_name =?");
+        try(
+                Connection con=connect();
+                PreparedStatement p=con.prepareStatement("select department from user where user_name =?");
+        ) {
+            
             p.setString(1, user);
             ResultSet r = p.executeQuery();
             return r.getString("department");
