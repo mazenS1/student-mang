@@ -1,4 +1,5 @@
 package databas;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,8 +32,8 @@ public class degreeDataBase {
             System.out.println(e.getMessage());
         }  
     }
-    public static ArrayList<domain.degreDomin> getDegree(int id) {
-        ArrayList<domain.degreDomin> list = new ArrayList<>();
+    public static ArrayList<degreDomin> getDegree(int id) {
+        ArrayList<degreDomin> list = new ArrayList<>();
         try(
                 Connection con = connect();
                 PreparedStatement p = con.prepareStatement("select * from degree where id=?");

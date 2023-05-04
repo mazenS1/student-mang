@@ -8,7 +8,6 @@ public class doctor extends JFrame {
     JTabbedPane tab;
     add a1;
     degree d1;
-    updateDegree d4;
     updateStudent d3;
     printDegree d2;
     public doctor(String depart){
@@ -18,7 +17,6 @@ public class doctor extends JFrame {
         a1 = new add();
         d2 = new printDegree();
         d3=new updateStudent();
-        d4 = new updateDegree();
         d1 = new degree(this.depart);
         setTitle("doc");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,7 +28,6 @@ public class doctor extends JFrame {
         tab.addTab("degreee", d1);
         tab.addTab("pritn", d2);
         tab.addTab("update student", d3);
-        tab.addTab("update degree", d4);
         add(tab);
     }
 }
