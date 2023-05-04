@@ -44,4 +44,40 @@ public class studentDataBase {
         }
        return list;
     }
+    public static ArrayList<Student> getStudentAndDegree() {
+        ArrayList<Student> list = new ArrayList<>();
+        try(
+                Connection con = connect();
+                PreparedStatement p = con.prepareStatement("select * from students,degree where degree.id=students.id");
+        ) {
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                list.add(new Student(r.getInt("id"), r.getString("fname"), r.getString("lname"),r.getString("sum")+"",r.getString("department")));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+       return list;
+    }
+
+
+    // updates all the students info
+    public static void upDateStudentInfo(int studentID,String fname,String lname,String address,String depart){
+        try(
+                Connection con=connect();
+                PreparedStatement p=con.prepareStatement("update students set fname=?, lname=?, adress=?, department=? where id=?");
+        ) {    
+        
+        p.setString(1, fname);
+        p.setString(2, lname);
+        p.setString(3, address);
+        p.setString(4, depart);
+        p.setInt(5, studentID);
+        p.execute();
+        }
+        catch (Exception e) {
+           System.out.println(e.getMessage());
+        }
+   
+    }
 }

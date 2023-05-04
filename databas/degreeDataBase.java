@@ -1,9 +1,11 @@
 package databas;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import domain.degreDomin;
 
 public class degreeDataBase {
     public static Connection connect() throws SQLException {
@@ -28,5 +30,21 @@ public class degreeDataBase {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }  
+    }
+    public static ArrayList<domain.degreDomin> getDegree(int id) {
+        ArrayList<domain.degreDomin> list = new ArrayList<>();
+        try(
+                Connection con = connect();
+                PreparedStatement p = con.prepareStatement("select * from degree where id=?");
+        ) {
+            p.setInt(1, id);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                list.add(new degreDomin(r.getInt("id"), r.getInt("m1"), r.getInt("m2"),r.getInt("m3"),r.getInt("m4"),r.getInt("m5"),r.getInt("m6")));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+       return list;
     }
 }
