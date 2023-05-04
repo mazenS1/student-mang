@@ -21,7 +21,7 @@ public class doctor extends JFrame {
         setVisible(true);
         tab = new JTabbedPane();
         tab.addTab("student", a1);
-        tab.addTab("degree", d1);
+        tab.addTab("degreee", d1);
         add(tab);
     }
 }
