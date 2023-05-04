@@ -1,0 +1,35 @@
+//DB for doctors :
+    1- user name -> Primry key
+    2- password
+    3- department
+
+//DB for students :
+    1- first name
+    2- last name
+    3- add
+    4- department
+    5- ID -> Primry key "auto generted".
+
+//DB for students degrees:
+    1- 6 subjects
+    2- sum
+    3- ID "given from students"
+-------------------------------
+Screens:
+    main:
+        1- sign in:
+            if(cond){
+                == yes:
+                    New screeen :
+                        add & update & degree & print
+                == no:
+                    Erorr message|||     
+            }
+        2- sign up:
+            if(cond){
+                == yes
+                    add account
+                == no:
+                    Erorr message
+            }
+

@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "demo",
+			"path": "../demo"
+		}
+	],
+	"settings": {
+		"java.project.referencedLibraries": [
+			"lib/**/*.jar",
+			"/Users/mazen/Documents/java tools/sqlite-jdbc-3.41.2.1.jar"
+		]
+	}
+}
